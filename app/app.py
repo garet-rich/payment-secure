@@ -32,3 +32,6 @@ def store_card():
   response = response.json()
 
   return render_template('store.html', response=response)
+
+if __name__ == '__main__':
+  app.run()
