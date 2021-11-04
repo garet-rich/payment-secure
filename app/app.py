@@ -24,7 +24,7 @@ def store_card():
   exp_date = request.form["exp_date"]
   cvv = request.form["cvv"]
 
-  os.environ['HTTPS_PROXY'] = 'https://tntivucxwfw.sandbox.verygoodproxy.com'
+  os.environ['HTTPS_PROXY'] = 'https://USERNAME:PASSWORD@tntivucxwfw.sandbox.verygoodproxy.com:8443'
   res = requests.post('https://echo.apps.verygood.systems/post',
                          json = {'card_num':card_num, 'exp_date':exp_date, 'cvv':cvv},
                          verify='path/to/sandbox.pem')
