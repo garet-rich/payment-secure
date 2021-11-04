@@ -25,13 +25,13 @@ def store_card():
   cvv = request.form["cvv"]
 
   os.environ['HTTPS_PROXY'] = 'http://USERNAME:PASSWORD@tntivucxwfw.SANDBOX.verygoodproxy.com:8080'
-  response = requests.post('https://echo.apps.verygood.systems/post',
-                         json={'card_num':card_num, 'exp_date':exp_date, 'cvv':cvv},
+  res = requests.post('https://echo.apps.verygood.systems/post',
+                         json = {'card_num':card_num, 'exp_date':exp_date, 'cvv':cvv},
                          verify='path/to/sandbox.pem')
   
-  response = response.json()
+  res = res.json()
 
-  return render_template('store.html', response=response)
+  return render_template('store.html', response=res)
 
 if __name__ == '__main__':
   app.run()
