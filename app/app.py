@@ -16,6 +16,13 @@ def create_card():
   exp_date = request.form["exp_date"]
   cvv = request.form["cvv"]
 
+  os.environ['HTTPS_PROXY'] = 'https://USERNAME:PASSWORD@tntivucxwfw.sandbox.verygoodproxy.com:8443'
+  res = requests.post('https://tntivucxwfw.SANDBOX.verygoodproxy.com/post',
+                         json = {'card_num':card_num, 'exp_date':exp_date, 'cvv':cvv},
+                         verify='path/to/sandbox.pem')
+  
+  res = res.json()
+
   return render_template('create.html', card_num=card_num, exp_date=exp_date, cvv=cvv)
 
 @app.route('/store_card', methods=['POST'])
@@ -23,13 +30,6 @@ def store_card():
   card_num = request.form["card_num"]
   exp_date = request.form["exp_date"]
   cvv = request.form["cvv"]
-
-  os.environ['HTTPS_PROXY'] = 'https://USERNAME:PASSWORD@tntivucxwfw.sandbox.verygoodproxy.com:8443'
-  res = requests.post('https://tntivucxwfw.SANDBOX.verygoodproxy.com/post',
-                         json = {'card_num':card_num, 'exp_date':exp_date, 'cvv':cvv},
-                         verify='path/to/sandbox.pem')
-  
-  res = res.json()
 
   return render_template('store.html', response=res)
 
